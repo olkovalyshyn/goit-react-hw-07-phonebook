@@ -10,13 +10,13 @@ function ContactForm({ onAdd, contactsItem }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  console.log(
-    "!!!onAdd",
-    onAdd({
-      name: "AAAAAAA!!!",
-      number: 1010101010,
-    })
-  );
+  // console.log(
+  //   "!!!onAdd",
+  //   onAdd({
+  //     name: "AAAAAAA!!!",
+  //     number: 1010101010,
+  //   })
+  // );
 
   const handleChange = (event) => {
     switch (event.currentTarget.name) {
@@ -32,6 +32,15 @@ function ContactForm({ onAdd, contactsItem }) {
         return;
     }
   };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
+  //     ? alert(`${name} is already in contacts.`)
+  //     : onAdd(name, number);
+  //   setName("");
+  //   setNumber("");
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -10,7 +10,7 @@ import fetchAddNewContact from "./Api";
 
 axios.defaults.baseURL = "http://localhost:4040/";
 
-console.log("fetchAddNewContact", fetchAddNewContact({}));
+console.log("!!!fetchAddNewContact", fetchAddNewContact({}));
 
 export const addContact = createAction("Contact/addContact", (name, number) => {
   return {
