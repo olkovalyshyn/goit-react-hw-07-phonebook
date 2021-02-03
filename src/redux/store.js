@@ -16,7 +16,14 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import actions from "./actions";
+import {
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContact,
+  filterContact,
+} from "./actions";
+
 // import { ADDCONTACT, DELCONTACT, FINDCONTACT } from "./contact-types";
 // import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -31,9 +38,9 @@ const contacts = {
 };
 
 const itemReducer = createReducer(contacts.items, {
-  [actions.addContactSuccess]: (state, { payload }) => [payload, ...state],
+  [addContactSuccess]: (state, { payload }) => [payload, ...state],
   // [actions.addContact]: (state, { payload }) => [payload, ...state],
-  [actions.deleteContact]: (state, { payload }) =>
+  [deleteContact]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 // const itemReducer = (state = contacts.items, { type, payload }) => {
@@ -48,7 +55,7 @@ const itemReducer = createReducer(contacts.items, {
 // };
 
 const filterReducer = createReducer(contacts.filter, {
-  [actions.filterContact]: (_, { payload }) => payload,
+  [filterContact]: (_, { payload }) => payload,
 });
 // const filterReducer = (state = contacts.filter, { type, payload }) => {
 //   switch (type) {

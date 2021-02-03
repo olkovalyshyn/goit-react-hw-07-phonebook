@@ -4,17 +4,26 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import * as actions from "../../redux/actions";
+import addContact from "../../redux/actions";
 import s from "./ContactForm.module.css";
 
-function ContactForm({ onAdd, contactsItem }) {
+function ContactForm({ contactsItem }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
   // console.log(
-  //   "!!!onAdd",
-  //   onAdd({
-  //     name: "AAAAAAA!!!",
-  //     number: 1010101010,
+  //   "!!!addContact",
+  //   addContact({
+  //     name: "ert",
+  //     number: 1,
+  //   })
+  // );
+
+  // console.log(
+  //   "!!!addData",
+  //   actions.addData({
+  //     name: "2",
+  //     number: 2,
   //   })
   // );
 
@@ -42,11 +51,13 @@ function ContactForm({ onAdd, contactsItem }) {
   //   setNumber("");
   // };
 
-  const handleSubmit = (event) => {
+  // console.log("!!!contactsItem123", contactsItem);
+
+  const handleSubmit = ({ event }) => {
     event.preventDefault();
     contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts.`)
-      : onAdd(name, number);
+      : addContact(name, number);
     setName("");
     setNumber("");
   };
@@ -88,13 +99,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAdd: (name, number) => dispatch(actions.addData(name, number)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onAdd: (name, number) => dispatch(actions.addData(name, number)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps)(ContactForm);
 
 // class OldContactForm extends Component {
 //   state = {

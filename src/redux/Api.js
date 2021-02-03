@@ -1,18 +1,26 @@
-const BASE_URL = "http://localhost:4040";
+import axios from "axios";
 
-// const contact = {
-//   name: "AAAAAAA!!!",
-//   number: 1010101010,
+// axios.defaults.baseURL = "http://localhost:4040",
+
+// export const fetchAddNewContact = () => async dispatch=> {
+//   await Axios.post("/contacts", contact);
 // };
 
-export default function fetchAddNewContact(newContact) {
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newContact),
-  };
+// const BASE_URL = "http://localhost:4040";
 
-  return fetch(`${BASE_URL}/contacts`, options)
-    .then((res) => res.json())
-    .then((info) => info);
-}
+// export function fetchAddNewContact(newContact) {
+//   const options = {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(newContact),
+//   };
+
+//   return fetch(`${BASE_URL}/contacts`, options).then((res) => res.json());
+//   // .then((info) => console.log(info));
+// }
+
+// console.log(
+//   "!!!fetchAddNewContact({ name: far number: 2352 })",
+//   fetchAddNewContact({ name: "far", number: 2352 })
+// );
+// fetchAddNewContact({ name: "far", number: 2352 });

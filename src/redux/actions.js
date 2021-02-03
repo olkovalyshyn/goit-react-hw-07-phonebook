@@ -2,35 +2,55 @@ import { createAction } from "@reduxjs/toolkit";
 import shortid from "shortid";
 import axios from "axios";
 
-import fetchAddNewContact from "./Api";
+import { fetchAddNewContact } from "./Api";
 
 // import { addData } from "./contact-operations";
 
 // import { ADDCONTACT, DELCONTACT, FINDCONTACT } from "./contact-types";
 
-axios.defaults.baseURL = "http://localhost:4040/";
+axios.defaults.baseURL = "http://localhost:4040";
 
-console.log("!!!fetchAddNewContact", fetchAddNewContact({}));
+// console.log("!!!fetchAddNewContact", fetchAddNewContact());
 
-export const addContact = createAction("Contact/addContact", (name, number) => {
-  return {
-    payload: {
-      name: name,
-      number: number,
-    },
-  };
-});
+// export const addContact = createAction("Contact/addContact", (name, number) => {
+//   return {
+//     payload: {
+//       name: name,
+//       number: number,
+//     },
+//   };
+// });
 
-export const addData = () => async (dispatch) => {
+export const addContact = (name, number) => (dispatch) => {
   dispatch(addContactRequest());
 
-  try {
-    const contact = await fetchAddNewContact();
-    dispatch(addContactSuccess(contact));
-  } catch (error) {
-    dispatch(addContactError(error));
-  }
+  const contact = {
+    name: name,
+    number: number,
+  };
+
+  axios
+    .post("/contacts", contact)
+    .then(({ data }) => dispatch(addContactSuccess(data)))
+    .catch((error) => dispatch(addContactError(error)));
 };
+// export const addContact = (name, number) => async (dispatch) => {
+//   dispatch(addContactRequest());
+
+//   try {
+//     // const contact = await fetchAddNewContact(name, number);
+//     const contact = {
+//       name: name,
+//       number: number,
+//     };
+//     const data = await fetchAddNewContact(contact);
+
+//     console.log("111!!!!!!!contact", contact);
+//     dispatch(addContactSuccess(data));
+//   } catch (error) {
+//     dispatch(addContactError(error));
+//   }
+// };
 
 // export const addContact = createAction("Contact/addContact", (name, number) => {
 //   fetchAddNewContact(name, number);
@@ -38,15 +58,16 @@ export const addData = () => async (dispatch) => {
 
 export const addContactRequest = createAction("Contact/addContactRequest");
 export const addContactSuccess = createAction(
-  "Contact/addContactSuccess",
-  (name, number) => {
-    return {
-      payload: {
-        name: name,
-        number: number,
-      },
-    };
-  }
+  "Contact/addContactSuccess"
+  // ,
+  // (name, number) => {
+  //   return {
+  //     payload: {
+  //       name: name,
+  //       number: number,
+  //     },
+  //   };
+  // }
 );
 export const addContactError = createAction("Contact/addContactError");
 
@@ -71,4 +92,4 @@ export const filterContact = createAction("Contact/ChangeFilter");
 //   payload: value,
 // });
 
-export default { addContact, deleteContact, filterContact };
+export default { deleteContact, filterContact };
