@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import * as actions from "../../redux/actions";
-import addContact from "../../redux/actions";
+// import addContact from "../../redux/actions";
 import s from "./ContactForm.module.css";
 
-function ContactForm({ contactsItem }) {
+function ContactForm({ contactsItem, onAdd }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
@@ -57,7 +57,7 @@ function ContactForm({ contactsItem }) {
     event.preventDefault();
     contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts.`)
-      : addContact(name, number);
+      : onAdd(name, number);
     setName("");
     setNumber("");
   };
@@ -99,13 +99,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onAdd: (name, number) => dispatch(actions.addData(name, number)),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAdd: (name, number) => dispatch(actions.addContact(name, number)),
+  };
+};
 
-export default connect(mapStateToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 
 // class OldContactForm extends Component {
 //   state = {
