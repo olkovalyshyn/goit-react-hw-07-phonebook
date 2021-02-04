@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 
@@ -8,6 +8,7 @@ import s from "./ContactList.module.css";
 function ContactList({ contacts, onDeleteContact }) {
   // console.log("!!!contacts in ContactsList", contacts);
   // console.log("!!!state.contacts.items", contacts);
+  const dispatch = useDispatch();
 
   return (
     <ul className={s.formContact}>
@@ -17,7 +18,8 @@ function ContactList({ contacts, onDeleteContact }) {
           <button
             className={s.formContactButton}
             type="button"
-            onClick={() => onDeleteContact(id)}
+            onClick={() => dispatch(deleteContact(id))}
+            // onClick={() => onDeleteContact(id)}
           >
             Delete
           </button>
@@ -51,13 +53,13 @@ const mapStateToProps = (state) => ({
 //   };
 // };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDeleteContact: (id) => dispatch(deleteContact(id)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onDeleteContact: (id) => dispatch(deleteContact(id)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default connect(mapStateToProps)(ContactList);
 
 ContactList.propType = {
   contacts: PropTypes.arrayOf(

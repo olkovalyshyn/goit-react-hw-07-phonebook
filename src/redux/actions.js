@@ -80,12 +80,28 @@ export const addContactError = createAction("Contact/addContactError");
 //   },
 // });
 
-export const deleteContact = createAction("Contact/deleteContact");
+export const deleteContactRequest = createAction(
+  "Contact/deleteContactRequest"
+);
+export const deleteContactSuccess = createAction(
+  "Contact/deleteContactSuccess"
+);
+export const deleteContactError = createAction("Contact/deleteContactError");
+
+// export const deleteContact = createAction("Contact/deleteContact");
 // export const deleteContact = (idForDelete) => ({
 //   type: DELCONTACT,
 //   payload: idForDelete,
 // });
 
+export const deleteContact = (idForDelete) => (dispatch) => {
+  dispatch(deleteContactRequest());
+
+  axios
+    .delete(`/contacts/${idForDelete}`)
+    .then(() => deleteContactSuccess(idForDelete))
+    .catch((error) => deleteContactError(error));
+};
 export const filterContact = createAction("Contact/ChangeFilter");
 // export const filterContact = (value) => ({
 //   type: FINDCONTACT,

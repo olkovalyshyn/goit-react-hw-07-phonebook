@@ -20,6 +20,9 @@ import {
   addContactRequest,
   addContactSuccess,
   addContactError,
+  deleteContactRequest,
+  deleteContactError,
+  deleteContactSuccess,
   deleteContact,
   filterContact,
 } from "./actions";
@@ -40,7 +43,7 @@ const contacts = {
 const itemReducer = createReducer(contacts.items, {
   [addContactSuccess]: (state, { payload }) => [payload, ...state],
   // [actions.addContact]: (state, { payload }) => [payload, ...state],
-  [deleteContact]: (state, { payload }) =>
+  [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 // const itemReducer = (state = contacts.items, { type, payload }) => {
