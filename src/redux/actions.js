@@ -99,8 +99,8 @@ export const deleteContact = (idForDelete) => (dispatch) => {
 
   axios
     .delete(`/contacts/${idForDelete}`)
-    .then(() => deleteContactSuccess(idForDelete))
-    .catch((error) => deleteContactError(error));
+    .then(() => dispatch(deleteContactSuccess(idForDelete)))
+    .catch((error) => dispatch(deleteContactError(error)));
 };
 export const filterContact = createAction("Contact/ChangeFilter");
 // export const filterContact = (value) => ({

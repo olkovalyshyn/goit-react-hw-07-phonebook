@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { deleteContact } from "../../redux/actions";
 import s from "./ContactList.module.css";
+import selectors from "../../redux/selectors";
 
 function ContactList({ contacts, onDeleteContact }) {
   // console.log("!!!contacts in ContactsList", contacts);
@@ -29,6 +30,19 @@ function ContactList({ contacts, onDeleteContact }) {
   );
 }
 
+// const getVisibleContacts = (allContacts, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
+
+//   return allContacts.filter((contact) =>
+//     contact.name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
+
+// const mapStateToProps = (state) => ({
+//   contacts: selectors.getVisibleContacts(state),
+// });
+
+// COPY
 const getVisibleContacts = (allContacts, filter) => {
   const normalizedFilter = filter.toLowerCase();
 
@@ -40,6 +54,7 @@ const getVisibleContacts = (allContacts, filter) => {
 const mapStateToProps = (state) => ({
   contacts: getVisibleContacts(state.contacts.item, state.contacts.filter),
 });
+// COPY
 
 // const mapStateToProps = (state) => {
 //   const { item, filter } = state.contacts;

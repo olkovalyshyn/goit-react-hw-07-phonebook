@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import * as actions from "../../redux/actions";
 // import addContact from "../../redux/actions";
 import s from "./ContactForm.module.css";
+import selectors from "../../redux/selectors";
 
 function ContactForm({ contactsItem, onAdd }) {
   const [name, setName] = useState("");
@@ -95,7 +96,7 @@ function ContactForm({ contactsItem, onAdd }) {
 
 const mapStateToProps = (state) => {
   return {
-    contactsItem: state.contacts.item,
+    contactsItem: selectors.getContactsItem(state),
   };
 };
 
