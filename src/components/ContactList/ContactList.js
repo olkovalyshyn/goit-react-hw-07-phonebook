@@ -52,7 +52,7 @@ const getVisibleContacts = (allContacts, filter) => {
 };
 
 const mapStateToProps = (state) => ({
-  contacts: getVisibleContacts(state.contacts.item, state.contacts.filter),
+  contacts: selectors.getVisibleContacts(state),
 });
 // COPY
 
