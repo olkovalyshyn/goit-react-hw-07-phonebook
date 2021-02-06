@@ -27,8 +27,12 @@ import {
   filterContact,
 } from "./actions";
 
+// import server from "../../db.json";
+
 // import { ADDCONTACT, DELCONTACT, FINDCONTACT } from "./contact-types";
 // import { composeWithDevTools } from "redux-devtools-extension";
+
+// console.log(server.contacts);
 
 const contacts = {
   items: [
