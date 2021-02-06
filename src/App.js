@@ -4,10 +4,12 @@
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import Filter from "./components/Filter";
+import actions from "./redux/actions";
 // import * as actions from "./redux/actions";
 // import shortid from "shortid";
 
 import "./App.css";
+import { checkPropTypes } from "prop-types";
 
 function App() {
   // const [filter, setFilter] = useState("");
