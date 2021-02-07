@@ -2,13 +2,11 @@ import { connect, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import { deleteContact } from "../../redux/actions";
+import { deleteContact } from "../../redux/operations";
 import s from "./ContactList.module.css";
 import selectors from "../../redux/selectors";
 
 function ContactList({ contacts, onDeleteContact }) {
-  // console.log("!!!contacts in ContactsList", contacts);
-  // console.log("!!!state.contacts.items", contacts);
   const dispatch = useDispatch();
 
   return (
@@ -20,7 +18,6 @@ function ContactList({ contacts, onDeleteContact }) {
             className={s.formContactButton}
             type="button"
             onClick={() => dispatch(deleteContact(id))}
-            // onClick={() => onDeleteContact(id)}
           >
             Delete
           </button>
@@ -30,19 +27,6 @@ function ContactList({ contacts, onDeleteContact }) {
   );
 }
 
-// const getVisibleContacts = (allContacts, filter) => {
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return allContacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(normalizedFilter)
-//   );
-// };
-
-// const mapStateToProps = (state) => ({
-//   contacts: selectors.getVisibleContacts(state),
-// });
-
-// COPY
 const getVisibleContacts = (allContacts, filter) => {
   const normalizedFilter = filter.toLowerCase();
 
@@ -54,19 +38,6 @@ const getVisibleContacts = (allContacts, filter) => {
 const mapStateToProps = (state) => ({
   contacts: selectors.getVisibleContacts(state),
 });
-// COPY
-
-// const mapStateToProps = (state) => {
-//   const { item, filter } = state.contacts;
-//   const normalizedFilter = filter.toLowerCase();
-//   const visibleContacts = item.filter((data) =>
-//     data.name.toLowerCase().includes(normalizedFilter)
-//   );
-
-//   return {
-//     contacts: visibleContacts,
-//   };
-// };
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {

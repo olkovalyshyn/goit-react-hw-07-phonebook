@@ -16,16 +16,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import {
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactError,
-  deleteContactSuccess,
-  deleteContact,
-  filterContact,
-} from "./actions";
+import { contactsReducer } from "./reducers";
 
 // import server from "../../db.json";
 
@@ -34,22 +25,6 @@ import {
 
 // console.log(server.contacts);
 
-const contacts = {
-  items: [
-    // { id: "1", name: "Rosie Simpson", number: "459-12-56" },
-    // { id: "2", name: "Hermione Kline", number: "443-89-12" },
-    // { id: "3", name: "Eden Clements", number: "645-17-79" },
-    // { id: "4", name: "Annie Copeland", number: "227-91-26" },
-  ],
-  filter: "",
-};
-
-const itemReducer = createReducer(contacts.items, {
-  [addContactSuccess]: (state, { payload }) => [payload, ...state],
-  // [actions.addContact]: (state, { payload }) => [payload, ...state],
-  [deleteContactSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
-});
 // const itemReducer = (state = contacts.items, { type, payload }) => {
 //   switch (type) {
 //     case ADDCONTACT:
@@ -61,9 +36,6 @@ const itemReducer = createReducer(contacts.items, {
 //   }
 // };
 
-const filterReducer = createReducer(contacts.filter, {
-  [filterContact]: (_, { payload }) => payload,
-});
 // const filterReducer = (state = contacts.filter, { type, payload }) => {
 //   switch (type) {
 //     case FINDCONTACT:
@@ -73,11 +45,6 @@ const filterReducer = createReducer(contacts.filter, {
 //       return state;
 //   }
 // };
-
-const contactsReducer = combineReducers({
-  item: itemReducer,
-  filter: filterReducer,
-});
 
 const middleware = [
   ...getDefaultMiddleware({

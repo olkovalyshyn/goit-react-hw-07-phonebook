@@ -1,6 +1,11 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "http://localhost:4040",
+axios.defaults.baseURL = "http://localhost:4040";
+
+// export const fetchAddNewContact = async (contact) => {
+//   console.log(contact);
+//   await axios.post("/contacts", contact);
+// };
 
 // export const fetchAddNewContact = () => async dispatch=> {
 //   await Axios.post("/contacts", contact);
@@ -23,4 +28,20 @@ import axios from "axios";
 //   "!!!fetchAddNewContact({ name: far number: 2352 })",
 //   fetchAddNewContact({ name: "far", number: 2352 })
 // );
+// fetchAddNewContact({ name: "qqq", number: 333 });
+// console.log("!!!fetchAddNewContact()", fetchAddNewContact());
+
 // fetchAddNewContact({ name: "far", number: 2352 });
+
+//фес
+// export const addContact = (name, number) => async (dispatch) => {
+//   dispatch(actions.addContactRequest());
+//   try {
+//     const contact = { name, number, id: uid() };
+//     await contactsAPI.addContact(contact);
+//     dispatch(actions.addContactSuccess(contact));
+//   } catch (error) {
+//     dispatch(actions.addContactReject(error));
+//   }
+// };
+//фес
