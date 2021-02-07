@@ -31,7 +31,7 @@ function ContactForm({ contactsItem, onAdd }) {
     event.preventDefault();
     contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts.`)
-      : actions.addContact(name, number);
+      : dispatch(actions.addContact(name, number));
     setName("");
     setNumber("");
   };
