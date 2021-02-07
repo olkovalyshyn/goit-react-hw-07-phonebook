@@ -2,11 +2,13 @@ import { connect, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import { deleteContact } from "../../redux/operations";
+import { useEffect } from "react";
+
+import { deleteContact, getContacts } from "../../redux/operations";
 import s from "./ContactList.module.css";
 import selectors from "../../redux/selectors";
 
-function ContactList({ contacts, onDeleteContact }) {
+function ContactList({ contacts }) {
   const dispatch = useDispatch();
 
   return (

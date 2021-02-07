@@ -23,8 +23,8 @@ export const getContacts = () => (dispatch) => {
 
   axios
     .get("/contacts")
-    .then(({ info }) => dispatch(getContactsSuccess(info)))
-    .catch((error) => getContactsError(error));
+    .then(({ data }) => dispatch(getContactsSuccess(data)))
+    .catch((error) => dispatch(getContactsError(error)));
 };
 
 export const addContact = (name, number) => (dispatch) => {

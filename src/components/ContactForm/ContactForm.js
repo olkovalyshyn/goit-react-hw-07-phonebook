@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import * as actions from "../../redux/operations";
+import { addContact, getContacts } from "../../redux/operations";
 import s from "./ContactForm.module.css";
 import selectors from "../../redux/selectors";
 
@@ -31,10 +31,14 @@ function ContactForm({ contactsItem, onAdd }) {
     event.preventDefault();
     contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts.`)
-      : dispatch(actions.addContact(name, number));
+      : dispatch(addContact(name, number));
     setName("");
     setNumber("");
   };
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
