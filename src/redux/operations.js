@@ -27,7 +27,7 @@ export const getContacts = () => (dispatch) => {
     .catch((error) => dispatch(getContactsError(error)));
 };
 
-export const addContact = (name, number) => (dispatch) => {
+export const addContact = ({ name, number }) => (dispatch) => {
   dispatch(addContactRequest());
 
   const contact = {

@@ -27,11 +27,14 @@ function ContactForm({ contactsItem, onAdd }) {
     }
   };
 
-  const handleSubmit = ({ event }) => {
+  const onSubmit = (text) => dispatch(addContact(text));
+
+  const handleSubmit = (event) => {
     event.preventDefault();
+    const contact = { name, number };
     contactsItem.find((item) => item.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts.`)
-      : dispatch(addContact(name, number));
+      : onSubmit(contact);
     setName("");
     setNumber("");
   };

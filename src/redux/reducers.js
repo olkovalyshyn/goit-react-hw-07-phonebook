@@ -31,7 +31,6 @@ const itemReducer = createReducer(contacts.items, {
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
-
 const filterReducer = createReducer(contacts.filter, {
   [filterContact]: (_, { payload }) => payload,
 });
