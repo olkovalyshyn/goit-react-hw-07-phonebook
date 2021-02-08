@@ -18,8 +18,8 @@ import {
 import storage from "redux-persist/lib/storage";
 import { contactsReducer } from "./reducers";
 
-import selectors from "../redux/selectors";
-console.log("!!!getVisibleContacts", selectors.getVisibleContacts());
+import selectors from "./contacts-selectors";
+// console.log("!!!getVisibleContacts", selectors.getVisibleContacts());
 // import server from "../../db.json";
 
 // import { ADDCONTACT, DELCONTACT, FINDCONTACT } from "./contact-types";
@@ -68,9 +68,6 @@ const store = configureStore({
   middleware: middleware,
   devTools: process.env.NODE_ENV === "development",
 });
-
-console.log("!!!store.getState", store.getState());
-console.log("!!!store.getState.contacts.item", store.getState.contacts.item());
 
 // const persistor = persistStore(store);
 

@@ -11,18 +11,13 @@ import {
   deleteContactRequest,
   deleteContactError,
   deleteContactSuccess,
-  deleteContact,
   filterContact,
 } from "./actions";
 
 const contacts = {
-  items: [
-    // { id: "1", name: "Rosie Simpson", number: "459-12-56" },
-    // { id: "2", name: "Hermione Kline", number: "443-89-12" },
-    // { id: "3", name: "Eden Clements", number: "645-17-79" },
-    // { id: "4", name: "Annie Copeland", number: "227-91-26" },
-  ],
-  filter: "a",
+  items: [],
+  filter: "",
+  loading: false,
 };
 
 const itemReducer = createReducer(contacts.items, {
@@ -31,11 +26,26 @@ const itemReducer = createReducer(contacts.items, {
   [deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
-const filterReducer = createReducer(contacts.filter, {
+
+const filterReducer = createReducer("", {
   [filterContact]: (_, { payload }) => payload,
 });
 
 export const contactsReducer = combineReducers({
   item: itemReducer,
   filter: filterReducer,
+});
+
+export const loading = createReducer(false, {
+  [getContactsRequest]: () => true,
+  [getContactsSuccess]: () => false,
+  [getContactsError]: () => false,
+
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
 });

@@ -1,25 +1,19 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import actions from "../../redux/operations";
-import selectors from "../../redux/selectors";
+import selectors from "../../redux/contacts-selectors";
+import { filterContact } from "../../redux/actions";
 import PropTypes from "prop-types";
 
-function Filter({ value, onChange }) {
+function Filter() {
+  const value = useSelector(selectors.getFilter);
+  const dispatch = useDispatch();
+  const onChange = ({ target }) => dispatch(filterContact(target.value));
+  console.log(value);
+
   return <input type="text" value={value} onChange={onChange}></input>;
 }
-// console.log("!!!getFilter", selectors.getFilter());
-
-const mapStateToProps = (state) => ({
-  value: selectors.getFilter(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChange: (event) =>
-    dispatch(actions.filterContact(event.currentTarget.value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;
 
 Filter.propTypes = {
   value: PropTypes.string,

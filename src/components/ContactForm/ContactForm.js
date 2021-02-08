@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
-
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 
 import { addContact, getContacts } from "../../redux/operations";
 import s from "./ContactForm.module.css";
-import selectors from "../../redux/selectors";
+import selectors from "../../redux/contacts-selectors";
 
-function ContactForm({ contactsItem, onAdd }) {
+function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  const contactsItem = useSelector(selectors.getContactsItem);
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -74,20 +74,4 @@ function ContactForm({ contactsItem, onAdd }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    contactsItem: selectors.getContactsItem(state),
-  };
-};
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onAdd: (name, number) => dispatch(actions.addContact(name, number)),
-//   };
-// };
-
-export default connect(mapStateToProps)(ContactForm);
-
-// ContactForm.propTypes = {
-//   onAdd: PropTypes.func,
-// };
+export default ContactForm;

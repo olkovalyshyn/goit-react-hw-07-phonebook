@@ -1,14 +1,12 @@
-import { connect, useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { useEffect } from "react";
-
-import { deleteContact, getContacts } from "../../redux/operations";
+import { deleteContact } from "../../redux/operations";
 import s from "./ContactList.module.css";
-import selectors from "../../redux/selectors";
+import selectors from "../../redux/contacts-selectors";
 
-function ContactList({ contacts }) {
+function ContactList() {
+  const contacts = useSelector(selectors.getVisibleContacts);
   const dispatch = useDispatch();
 
   return (
@@ -29,25 +27,7 @@ function ContactList({ contacts }) {
   );
 }
 
-// const getVisibleContacts = (allContacts, filter) => {
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return allContacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(normalizedFilter)
-//   );
-// };
-
-const mapStateToProps = (state) => ({
-  contacts: selectors.getVisibleContacts(state),
-});
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onDeleteContact: (id) => dispatch(deleteContact(id)),
-//   };
-// };
-
-export default connect(mapStateToProps)(ContactList);
+export default ContactList;
 
 ContactList.propType = {
   contacts: PropTypes.arrayOf(
