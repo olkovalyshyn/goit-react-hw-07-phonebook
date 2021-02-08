@@ -29,13 +29,13 @@ function ContactList({ contacts }) {
   );
 }
 
-const getVisibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
+// const getVisibleContacts = (allContacts, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
 
-  return allContacts.filter((contact) =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
-};
+//   return allContacts.filter((contact) =>
+//     contact.name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
 
 const mapStateToProps = (state) => ({
   contacts: selectors.getVisibleContacts(state),

@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 function Filter({ value, onChange }) {
   return <input type="text" value={value} onChange={onChange}></input>;
 }
+// console.log("!!!getFilter", selectors.getFilter());
 
 const mapStateToProps = (state) => ({
   value: selectors.getFilter(state),

@@ -19,7 +19,8 @@ function App() {
       <Filter />
 
       <h2>Contacts</h2>
-      <ContactList contacts={contacts} />
+      {/* <ContactList contacts={contacts} /> */}
+      <ContactList />
     </>
   );
 }
